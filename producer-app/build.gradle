@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'application'
+    id 'org.springframework.boot' version '3.1.2'
+    id 'io.spring.dependency-management' version '1.1.2'
+    id 'com.github.davidmc24.gradle.plugin.avro' version '1.8.0'
+}
+
+java {
+    sourceCompatibility = '17'
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url = 'https://packages.confluent.io/maven/'
+    }
+}
+
+dependencies {
+    implementation 'org.apache.avro:avro:1.11.2'
+    implementation 'org.apache.kafka:kafka-clients:7.4.1-ce'
+    implementation 'io.confluent:kafka-avro-serializer:7.4.1'
+    implementation 'io.confluent:kafka-json-serializer:7.4.1'
+    implementation 'io.confluent:monitoring-interceptors:7.4.1'
+
+    implementation('org.springframework.boot:spring-boot-starter-web') {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+    implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = 'stream.processing.demo.producer.Application'
+}

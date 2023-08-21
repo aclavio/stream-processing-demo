@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Port Entry Form</title>
+    <meta name="description" content="Confluent Demo Application" />
+    <meta name="author" content="Confluent" />
+    <link rel="icon" type="image/svg+xml" href="images/20200122-SVG-confluent_logo-mark-denim.svg"></link>
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/globals.css">
+    <link rel="stylesheet" href="styles/entry-form.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header"><span class="title">Port of Entry Application</span></header>
+        <main class="content">
+            <form id="entryForm" class="entry-form">
+                <div class="row">
+                    <h2>Enter the applicant's information:</h2>
+                </div>
+                <div class="row">
+                    <label>Applicant Id:</label>
+                    <input name="id" type="text" placeholder="autogenerate">
+                </div>
+                <div class="row">
+                    <label>First Name:</label>
+                    <input name="firstName" type="text" required>
+                </div>
+                <div class="row">
+                    <label>Last Name:</label>
+                    <input name="lastName" type="text" required>
+                </div>
+                <div class="row">
+                    <label>Phone Number:</label>
+                    <input name="phone" type="tel" required>
+                </div>
+                <div class="row">
+                    <label>Port of Entry:</label>
+                    <select name="portName">
+                        <option selected>ALPHA</option>
+                        <option>BETA</option>
+                        <option>GAMMA</option>
+                        <option>OMEGA</option>
+                    </select>
+                </div>
+                <div class="row notes">
+                    <label>Notes:</label>
+                    <textarea name="notes"></textarea>
+                </div>
+                <div class="row">
+                    <input type="submit">
+                </div>
+            </form>
+        </main>
+        <footer class="footer"><span>Confluent Demo Application</span></footer>
+    </div>
+    <script>
+        function submitEntryForm(e) {
+            if (e.preventDefault) e.preventDefault();
+            const data = new FormData(form);
+            let payload = {
+                id: data.get('id'),
+                firstName: data.get('firstName'),
+                lastName: data.get('lastName'),
+                portName: data.get('portName'),
+                notes: data.get('notes'),
+                phone: data.get('phone'),
+                latitude: 0,
+                longitude: 0
+            };
+            console.log('submitting data:', payload);
+            fetch('/publish', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            }).then(resp => {
+                console.log(resp);
+                if (resp.ok) {
+                    alert('created');
+                    form.reset();
+                } else {
+                    alert('unable to publish - ' + resp.status);
+                }
+            }).catch(err => {
+                console.error(err);
+                alert('error publishing form');
+            }).finally(() => {
+            });
+            return false;
+        }
+        let form = document.getElementById('entryForm');
+        form.addEventListener('submit', submitEntryForm);
+    </script>
+</body>
+</html>

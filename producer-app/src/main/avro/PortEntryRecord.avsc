@@ -1,0 +1,16 @@
+{
+  "namespace": "stream.processing.demo",
+  "type": "record",
+  "name": "PortEntryRecord",
+  "fields": [
+    {"name": "id", "type": "string"},
+    {"name": "firstName", "type": "string"},
+    {"name": "lastName", "type": "string"},
+    {"name": "portName", "type": "string"},
+    {"name": "scanDate", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+    {"name": "latitude", "type": "string"},
+    {"name": "longitude", "type": "string"},
+    {"name": "phone", "type": "string"},
+    {"name": "notes", "type": "string", "default": ""}
+  ]
+}
