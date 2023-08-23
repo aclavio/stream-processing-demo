@@ -64,9 +64,7 @@
                 lastName: data.get('lastName'),
                 portName: data.get('portName'),
                 notes: data.get('notes'),
-                phone: data.get('phone'),
-                latitude: 0,
-                longitude: 0
+                phone: data.get('phone')
             };
             console.log('submitting data:', payload);
             fetch('/publish', {

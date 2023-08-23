@@ -3,9 +3,10 @@
 # Configure Login
 export CONFLUENT_REST_URL=http://localhost:8082
 export CONFLUENT_PLATFORM_MDS_URL=http://localhost:8082
+
+# if running in ccloud
 #export CONFLUENT_PLATFORM_USERNAME=
 #export CONFLUENT_PLATFORM_PASSWORD=
-
 #confluent login
 
 # Create Topics

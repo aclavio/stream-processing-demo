@@ -40,7 +40,7 @@ TODO
 ## Start the java consumer
 
 ```
-TODO
+./gradlew consumer-app:run
 ```
 
 ## Create the kSQLdb application
@@ -62,6 +62,6 @@ TODO
 ## Cleanup
 
 ```
-docker compose -f applicants-db/docker-compose.yml  down
-docker compose -f infastructure/docker-compose.yml  down
+docker compose -f applicants-db/docker-compose.yml down
+docker compose -f infastructure/docker-compose.yml down
 ```

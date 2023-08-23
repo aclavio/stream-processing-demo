@@ -28,25 +28,41 @@ public class EntryForm {
     @ResponseBody
     public ResponseEntity publishRecord(@RequestBody EntryFormRequest request) {
         // Transform the form data into the canonical Avro data
-        PortEntryRecord record = new PortEntryRecord();
-        record.setId(
-                StringUtils.hasLength(request.getId()) ?
-                        request.getId() :
-                        UUID.randomUUID().toString());
-        record.setScanDate(Instant.now());
-        record.setFirstName(request.getFirstName());
-        record.setLastName(request.getLastName());
-        record.setPortName(request.getPortName());
-        record.setLatitude(request.getLatitude());
-        record.setLongitude(request.getLongitude());
-        record.setPhone(request.getPhone());
-        record.setNotes(request.getNotes());
+        PortEntryRecord record = PortEntryRecord.newBuilder()
+                .setId(
+                        StringUtils.hasLength(request.getId()) ?
+                                request.getId() :
+                                UUID.randomUUID().toString())
+                .setScanDate(Instant.now())
+                .setFirstName(request.getFirstName())
+                .setLastName(request.getLastName())
+                .setPortName(request.getPortName())
+                .setLatitude(PortLocations.valueOf(request.getPortName()).getLatitude())
+                .setLongitude(PortLocations.valueOf(request.getPortName()).getLongitude())
+                .setPhone(request.getPhone())
+                .setNotes(request.getNotes())
+                .build();
 
         logger.info("Publishing record: {}", record);
         // Publish the record to Kafka
         producer.publishEntryRecord(record);
 
         return new ResponseEntity(HttpStatus.CREATED);
+    }
+
+    static enum PortLocations {
+        ALPHA("0", "0"),
+        BETA("1", "1"),
+        GAMMA("2", "2"),
+        OMEGA("3", "3");
+        private final String latitude;
+        private final String longitude;
+        PortLocations(String latitude, String longitude) {
+            this.latitude = latitude;
+            this.longitude = longitude;
+        }
+        String getLatitude() { return this.latitude; }
+        String getLongitude() { return this.longitude; }
     }
 
 }

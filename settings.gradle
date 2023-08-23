@@ -6,4 +6,4 @@ pluginManagement {
 }
 
 rootProject.name = 'stream-processing-demo'
-include('producer-app', 'consumer-app')
+include('producer-app', 'consumer-app', 'kafka-streams')

@@ -5,8 +5,6 @@ public class EntryFormRequest {
     private String firstName;
     private String lastName;
     private String portName;
-    private String latitude;
-    private String longitude;
     private String phone;
     private String notes;
 
@@ -24,14 +22,6 @@ public class EntryFormRequest {
 
     public String getPortName() {
         return portName;
-    }
-
-    public String getLatitude() {
-        return latitude;
-    }
-
-    public String getLongitude() {
-        return longitude;
     }
 
     public String getPhone() { return phone; }

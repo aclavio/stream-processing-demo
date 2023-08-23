@@ -1,0 +1,20 @@
+{
+  "namespace": "stream.processing.demo",
+  "type": "record",
+  "name": "PortEntryEnrichedRecord",
+  "fields": [
+    {"name": "entrant_first_name", "type": "string"},
+    {"name": "entrant_last_name", "type": "string"},
+    {"name": "entrant_port_name", "type": "string"},
+    {"name": "entrant_scan_date", "type": {"type": "long", "logicalType": "timestamp-millis"}},
+    {"name": "entrant_latitude", "type": "string"},
+    {"name": "entrant_longitude", "type": "string"},
+    {"name": "entrant_phone", "type": "string"},
+    {"name": "entrant_notes", "type": "string", "default": ""},
+    {"name": "applicant_first_name", "type": "string", "default": ""},
+    {"name": "applicant_last_name", "type": "string", "default": ""},
+    {"name": "applicant_phone", "type": "string", "default": ""},
+    {"name": "applicant_home_address", "type": "string", "default": ""},
+    {"name": "applicant_status", "type": "string", "default": ""}
+  ]
+}

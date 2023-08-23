@@ -21,8 +21,8 @@ public class BasicConsumer implements Runnable {
 
     private static final String DEFAULT_CONFIG_FILE = "consumer.properties";
     private static final String DEFAULT_TOPIC = "port.entries.avro,port.entries.enriched.ksql.avro,port.entries.enriched.kstreams.avro";
-    private final KafkaConsumer<String, PortEntryRecord> consumer;
-    //private final KafkaConsumer<String, GenericRecord> consumer;
+    //private final KafkaConsumer<String, PortEntryRecord> consumer;
+    private final KafkaConsumer<String, GenericRecord> consumer;
     private final List<String> topics;
     private final CountDownLatch shutdownLatch;
 
@@ -39,11 +39,13 @@ public class BasicConsumer implements Runnable {
             // subscribe to the Kafka topics
             consumer.subscribe(topics);
 
+            logger.info("Waiting for events...");
+
             // basic Kafka consumer "poll loop"
             while (true) {
                 // poll for new kafka events
-                //ConsumerRecords<String, GenericRecord> records = consumer.poll(Long.MAX_VALUE);
-                ConsumerRecords<String, PortEntryRecord> records = consumer.poll(Long.MAX_VALUE);
+                ConsumerRecords<String, GenericRecord> records = consumer.poll(Long.MAX_VALUE);
+                //ConsumerRecords<String, PortEntryRecord> records = consumer.poll(Long.MAX_VALUE);
 
                 // application specific processing...
                 records.forEach(record -> {

@@ -3,22 +3,22 @@
 PUBLISH_ENDPOINT="localhost:8080/publish"
 
 curl -X POST $PUBLISH_ENDPOINT -H 'Content-type:application/json' -d \
-'{ "firstName": "Jane", "lastName": "Doe", "portName": "BETA", "latitude": "0.0", "longitude": "0.0", "notes": "test" }'
+'{ "id": "2", "firstName": "Jane", "lastName": "Doe", "phone": "", "portName": "BETA", "notes": "test" }'
 
 curl -X POST $PUBLISH_ENDPOINT -H 'Content-type:application/json' -d \
-'{ "firstName": "John", "lastName": "Doe", "portName": "ALPHA", "latitude": "0.0", "longitude": "0.0", "notes": "" }'
+'{ "id": "4", "firstName": "John", "lastName": "Doe", "phone": "", "portName": "ALPHA", "notes": "" }'
 
 curl -X POST $PUBLISH_ENDPOINT -H 'Content-type:application/json' -d \
-'{ "firstName": "John", "lastName": "Doe", "portName": "ALPHA", "latitude": "0.0", "longitude": "0.0", "notes": "" }'
+'{ "id": "", "firstName": "John", "lastName": "Doe", "phone": "", "portName": "ALPHA", "notes": "" }'
 
 curl -X POST $PUBLISH_ENDPOINT -H 'Content-type:application/json' -d \
-'{ "firstName": "Bilbo", "lastName": "Baggins", "portName": "ALPHA", "latitude": "0.0", "longitude": "0.0", "notes": "" }'
+'{ "id": "1", "firstName": "Bilbo", "lastName": "Baggins", "phone": "", "portName": "ALPHA", "notes": "" }'
 
 curl -X POST $PUBLISH_ENDPOINT -H 'Content-type:application/json' -d \
-'{ "firstName": "Frodo", "lastName": "Baggins", "portName": "GAMMA", "latitude": "0.0", "longitude": "0.0", "notes": "" }'
+'{ "id": "2", "firstName": "Frodo", "lastName": "Baggins", "phone": "", "portName": "GAMMA", "notes": "" }'
 
 curl -X POST $PUBLISH_ENDPOINT -H 'Content-type:application/json' -d \
-'{ "firstName": "Samwise", "lastName": "Gamgee", "portName": "GAMMA", "latitude": "0.0", "longitude": "0.0", "notes": "" }'
+'{ "id": "", "firstName": "Samwise", "lastName": "Gamgee", "phone": "", "portName": "GAMMA", "notes": "" }'
 
 curl -X POST $PUBLISH_ENDPOINT -H 'Content-type:application/json' -d \
-'{ "firstName": "Pippin", "lastName": "Took", "portName": "OMEGA", "latitude": "0.0", "longitude": "0.0", "notes": "" }'
+'{ "id": "", "firstName": "Pippin", "lastName": "Took", "phone": "", "portName": "OMEGA", "notes": "" }'
