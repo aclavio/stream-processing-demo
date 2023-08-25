@@ -1,6 +1,6 @@
 {
   "namespace": "stream.processing.demo",
-  "name": "applicants",
+  "name": "Applicant",
   "type": "record",
   "fields": [
     {

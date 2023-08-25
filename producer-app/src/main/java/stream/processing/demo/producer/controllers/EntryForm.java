@@ -44,6 +44,7 @@ public class EntryForm {
                 .build();
 
         logger.info("Publishing record: {}", record);
+
         // Publish the record to Kafka
         producer.publishEntryRecord(record);
 
