@@ -6,6 +6,7 @@
 - Bash compatible shell 
   - cygwin on windows should work
 - Java 17+ Runtime Environment
+## Demo Data Flow
 
 ![Demo Data Flow](stream-processing-demo.png)
 
