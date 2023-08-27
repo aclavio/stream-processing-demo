@@ -1,3 +1,4 @@
+-- Build a table to represent the Applicants stream
 CREATE OR REPLACE TABLE applicants_table (
     id string PRIMARY KEY,
     first_name string,
@@ -12,6 +13,7 @@ CREATE OR REPLACE TABLE applicants_table (
     value_format = 'avro'
 );
 
+-- Create a Stream (keyed by ID) to represent the Entries data
 CREATE OR REPLACE STREAM entries_stream WITH (kafka_topic = 'port.entries.avro', value_format = 'avro');
 CREATE OR REPLACE STREAM entries_id_stream WITH (
     kafka_topic = 'port.entries.id.avro',
@@ -19,9 +21,10 @@ CREATE OR REPLACE STREAM entries_id_stream WITH (
 )
 AS SELECT *
 FROM entries_stream
-PARTITION BY id;
+PARTITION BY id
+EMIT CHANGES;
 
-
+-- Join the Entrant data with the Applicant data using ID
 CREATE OR REPLACE STREAM applicants_enriched_stream
 WITH (
     kafka_topic = 'port.entries.enriched.ksql.avro',

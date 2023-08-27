@@ -106,7 +106,6 @@ public class EntrantApplicantMatcher implements Runnable {
         final  StreamsBuilder builder = new StreamsBuilder();
 
         // Create a KTable from the applicants data
-        //KTable<String, stream.processing.demo.applicants> applicantTable = builder.table(APPLICANTS_TOPIC, Consumed.with(stringSerde, applicantSerde));
         KTable<String, GenericRecord> applicantTable = builder
                 .stream(APPLICANTS_TOPIC, Consumed.with(stringSerde, genericAvroSerde))
                 .selectKey((key, value) -> value.get("id").toString())
