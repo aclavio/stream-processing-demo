@@ -15,3 +15,14 @@ VALUES ('Meriadoc', 'Brandybuck', '555-0003', '1 Buckland Way, Hobbiton, the Shi
 
 INSERT INTO "applicants" ("first_name", "last_name", "phone", "home_address", "status", "modified")
 VALUES ('Aragorn', 'Elessar', '555-1234', '1 Main Street, Gondor', 'PENDING');
+
+
+UPDATE "applicants"
+SET "phone" = '555-1112', "modified" = now()
+WHERE id = 2;
+
+SELECT id, COUNT(*) AS num_updates
+FROM  APPLICANTS_STREAM
+WINDOW TUMBLING (SIZE 2 MINUTES)
+GROUP BY id HAVING COUNT(*) > 2
+EMIT CHANGES;

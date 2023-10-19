@@ -20,7 +20,7 @@ public class BasicConsumer implements Runnable {
     private static final Logger logger = LoggerFactory.getLogger(BasicConsumer.class);
 
     private static final String DEFAULT_CONFIG_FILE = "consumer.properties";
-    private static final String DEFAULT_TOPIC = "port.entries.avro,port.entries.enriched.ksql.avro,port.entries.enriched.kstreams.avro";
+    private static final String DEFAULT_TOPIC = "port.entries.avro,port.entries.id.avro,port.entries.enriched.ksql.avro,port.entries.enriched.kstreams.avro";
     //private final KafkaConsumer<String, PortEntryRecord> consumer;
     private final KafkaConsumer<String, GenericRecord> consumer;
     private final List<String> topics;

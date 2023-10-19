@@ -24,7 +24,7 @@ Allow the platform time to start up.  Wait for the [Control Center](http://local
 cd infrastructure && ./initialize-environment.sh
 ```
 
-## Start the postgresql database
+## Start the PostgreSQL database
 
 ```
 docker compose -f applicants-db/docker-compose.yml up -d 
